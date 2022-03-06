@@ -1,0 +1,227 @@
+<!--
+Student name:H.M.L.D.HERATH
+Student number:PS/2017/065
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Assignment1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+  
+  /*body color*/
+  body{
+  background-color:skyblue;
+  padding:0%;
+  }
+  
+  /*center div*/
+  div{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width:50%;
+  border:2px solid black;
+  background-color:#1E90FF;
+  }
+  
+  /*center images*/
+  img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+  }
+  
+  /*header center*/
+  .center{
+  text-align:center;
+  }
+  
+  /*link*/
+  a:link{
+  color:blue;}
+  
+  a:visited {
+  color:black;}
+  
+  a:hover{
+  color:red;}
+  
+  a:active{
+  color:black;
+  }
+  
+  /*lable alignment*/
+  label{
+  width:200px;
+  display:inline-block;
+  }
+  
+  /*for mobile screens*/
+  @media screen and (max-width: 480px) {
+  div{
+  width:auto;
+  }
+  label{
+  width:auto;
+  display:inline-block;
+  }
+  
+  /*input feilds focus*/
+  }
+  input:focus {
+  background-color:skyblue;
+  }
+  </style>
+
+</head>
+<body>
+<img onmouseover="bigImg(this)" onmouseout="normalImg(this)" src="rgstr.jpg" alt="logo" style="width:20%;">
+<hr>
+<div>
+<h1 class="center">Registration Form</h1>
+<div style="border:none;width:65%;">
+<form  name="form1" action="/action_page.php" onsubmit="return validateForm()" method="post">
+
+  <label for="fname">First name:</label>
+  <input align="right" type="text" id="fname" name="fname" placeholder="First name" size="35"><br><br>
+  
+  <label for="lname">Last name:</label>
+  <input type="text" id="lname" name="lname" placeholder="Last name"  size="35"><br><br>
+  
+  <label for="address">Address:</label>
+  <input type="text" id="address" name="address" placeholder="Address"  size="35"><br><br>
+  
+  <label for="Gender">Gender:</label>
+  <input type="radio" id="Male" name="Gender" value="Male"  size="35">
+  <label  style="width:30px;"for="Male">Male</label>
+  <input type="radio" id="Female" name="Gender" value="Female" size="35">
+  <label for="Female">Female</label><br><br>
+  
+  <label for="email" >Enter your email:</label>
+  <input type="text" id="email" name="email" placeholder="example@gmail.com"  size="35"><br><br>
+  
+  <label for="Mobile" >Mobile:</label>
+  <input type="text" id="Mobile" name="Mobile" placeholder="071-1234567"  size="35"><br><br>
+  
+  <label for="course">Course:</label>
+  <select style="width:237px;" id="courses" name="courses">
+    <option value="" selected disabled >Select course</option>
+    <option value="HTML">HTML</option>
+    <option value="CSS">CSS</option>
+    <option value="JavaScript">JavaScript</option>
+    <option value="PHP">PHP</option>
+  </select><br><br>
+  
+  <div style="width:auto;padding-left:41%;border:none;">
+  <input type="submit" value="Submit" >
+  <input type="reset">
+  </div>
+</form> 
+</div>
+<br>
+</div>
+For more details:
+<a href="https://science.kln.ac.lk/" target="_blank">www.kln.ac.lk</a>
+
+
+<script>
+//form validations
+function validateForm(){
+//getting feild values and set formats
+  let fname = document.forms["form1"]["fname"].value;
+  let lname = document.forms["form1"]["lname"].value;
+  let address = document.forms["form1"]["address"].value;
+  let Gender = document.forms["form1"]["Gender"].value;
+  let email = document.forms["form1"]["email"].value;
+  let courses = document.forms["form1"]["courses"].value;
+  let Mobile = document.forms["form1"]["Mobile"].value;
+  var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{7})$/;
+  
+//checking null feilds 
+  if (fname == "") {
+    alert("First name must be filled out");
+	document.form1.fname.focus();
+    return false;
+  }
+  
+  else if (lname == "") {
+    alert("Last name must be filled out");
+	document.form1.lname.focus();
+    return false;
+  }
+  
+  else if (address == "") {
+    alert("Address must be filled out");
+	document.form1.address.focus();
+    return false;
+  }
+  
+  else if (Gender == "") {
+    alert("Gender must be selected");
+	//document.form1.Gender.focus();
+    return false;
+  }
+  
+  
+  else if (email == ""){
+    alert("email must be filled out");
+	document.form1.email.focus();
+    return false;
+	}
+
+
+  else if (Mobile == "") {
+    alert("Mobile must be filled out");
+	document.form1.Mobile.focus();
+    return false;
+  }
+	
+	
+  else if (courses == "") {
+    alert("courses must be selected");
+	document.form1.courses.focus();
+    return false;
+  }
+  
+
+//email and phone number validation  
+  else if (email != ""){
+  
+	if(email.match(mailformat)){
+		if (Mobile != ""){
+			if(Mobile.match(phoneno))
+			{
+			return true;
+			}
+			else
+			{
+			alert("Not a valid Phone Number");
+			document.form1.Mobile.focus();
+			return false;
+			}
+		}
+    }
+    else
+       {
+       alert("You have entered an invalid email address!");
+       document.form1.email.focus();
+       return false;
+       }
+    }
+
+}
+//image resize on mouseover 
+function bigImg(x) {
+  x.style.width = "30%";
+}
+function normalImg(x) {
+  x.style.width = "20%";
+}
+</script>
+</body>
